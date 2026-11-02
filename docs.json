@@ -124,7 +124,7 @@
     "primary": {
       "type": "button",
       "label": "Get API key",
-      "href": "https://reporters.io/account/api-keys"
+      "href": "https://reporters.io/developers/api/keys"
     }
   },
   "footer": {

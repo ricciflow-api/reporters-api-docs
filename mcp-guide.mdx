@@ -10,26 +10,60 @@ The Reporters.io MCP server lets an assistant use the same reporter, outlet, art
 
 ## Hosted MCP
 
-Use Streamable HTTP at `https://reporters.io/api/mcp`. Configure your client to send your API key as a bearer header:
+Use Streamable HTTP at `https://reporters.io/api/mcp`. The [MCP dashboard](https://reporters.io/developers/mcp) also provides client setup. Set `REPORTERS_API_KEY` in the environment that launches your client, then add its configuration:
 
-```json
-{
-  "mcpServers": {
-    "reporters": {
-      "url": "https://reporters.io/api/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_API_KEY"
+<Tabs>
+  <Tab title="Claude Code">
+    Merge this entry into your project's `.mcp.json`, approve the server, and check the connection with `/mcp`.
+
+    ```json
+    {
+      "mcpServers": {
+        "reporters": {
+          "type": "http",
+          "url": "https://reporters.io/api/mcp",
+          "headers": { "Authorization": "Bearer ${REPORTERS_API_KEY}" }
+        }
       }
     }
-  }
-}
-```
+    ```
+  </Tab>
+  <Tab title="Cursor">
+    Merge this entry into `.cursor/mcp.json` and enable the server in your MCP settings.
 
-Replace `YOUR_API_KEY` in your client's protected settings. The exact configuration location depends on the MCP client.
+    ```json
+    {
+      "mcpServers": {
+        "reporters": {
+          "url": "https://reporters.io/api/mcp",
+          "headers": { "Authorization": "Bearer ${env:REPORTERS_API_KEY}" }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Codex">
+    Add this entry to `~/.codex/config.toml` and restart the client.
+
+    ```toml
+    [mcp_servers.reporters]
+    url = "https://reporters.io/api/mcp"
+    bearer_token_env_var = "REPORTERS_API_KEY"
+    ```
+  </Tab>
+</Tabs>
+
+These clients resolve the environment variable before connecting. Do not replace it with a key in a shared file. The hosted server uses API keys, without an OAuth sign-in flow. See the [Claude Code](https://code.claude.com/docs/en/mcp), [Cursor](https://cursor.com/docs/mcp), and [Codex](https://learn.chatgpt.com/docs/extend/mcp) references for client setup details.
 
 ## Connection reference
 
-The public [reporters-mcp repository](https://github.com/ricciflow-api/reporters-mcp) contains server metadata, connection examples, and discovery checks for the hosted server. Use a client that supports remote Streamable HTTP and bearer headers.
+The public [reporters-mcp repository](https://github.com/ricciflow-api/reporters-mcp) contains server metadata, client configurations, a local stdio bridge, and discovery checks for the hosted server. Use a client that supports remote Streamable HTTP and bearer headers.
+
+## Local stdio connection
+
+For a client that launches local MCP processes, clone the [public MCP repository](https://github.com/ricciflow-api/reporters-mcp), run `npm ci`, and configure `node /absolute/path/reporters-mcp/src/index.mjs` as the server command. Requires Node.js 20 or later. Provide `REPORTERS_API_KEY` through the client's protected environment settings.
+
+The bridge forwards current hosted tool schemas and results. It verifies hosted access before startup, and the hosted service enforces active Pro access and key revocation on discovery and tool calls. The bridge does not cache contacts or retry calls automatically. It is not published as an npm package.
 
 ## Tools and results
 

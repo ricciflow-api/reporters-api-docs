@@ -13,10 +13,12 @@ The Reporters.io agent skill guides an assistant through media research using th
 Use the public [reporters-agent-skills repository](https://github.com/ricciflow-api/reporters-agent-skills). Install it with the following command, or follow the repository README to copy it into your agent's supported skill directory:
 
 ```bash
-npx skills add ricciflow-api/reporters-agent-skills
+npx skills add ricciflow-api/reporters-agent-skills --skill reporter-research
 ```
 
-Configure `REPORTERS_API_KEY` in the agent's protected environment.
+The installer requires Node.js 22.20 or later. Choose Claude Code, Cursor, Codex, or another supported agent when prompted. To target one agent, append `-a claude-code`, `-a cursor`, or `-a codex`. See the [installer reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md).
+
+For a manual installation, use the [reporter-research directory](https://github.com/ricciflow-api/reporters-agent-skills/tree/main/skills/reporter-research) or copy `skills/reporter-research` into your client's supported skills directory. Invoke `$reporter-research` in clients that support named skill invocation. Configure `REPORTERS_API_KEY` in the agent's protected environment, or connect the [hosted MCP server](/mcp-guide).
 
 The skill uses the API at `https://reporters.io/api/v1`. Create a key by entering a name; all six API permissions are included automatically, with no automatic expiration. The account must retain active Pro access. Revoked keys and keys on accounts without active Pro access do not authorize requests; stop when access is denied. See [authentication](/authentication) for key management.
 
