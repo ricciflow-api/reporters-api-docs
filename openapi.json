@@ -3,7 +3,7 @@
   "info": {
     "title": "Reporters.io API",
     "version": "1.0.0",
-    "description": "Search reporters and media outlets, browse indexed articles, and explicitly reveal eligible paid contacts. API and MCP use the same account access. Search returns bounded ranked snapshots; article text and live enrichment are not provided."
+    "description": "Search reporters and media outlets, browse indexed articles, and explicitly reveal eligible paid contacts. All authenticated API and MCP operations require an active Professional (Pro) subscription. Search returns bounded ranked snapshots; article text and live enrichment are not provided."
   },
   "servers": [
     {
@@ -84,7 +84,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -215,7 +215,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -401,7 +401,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -465,7 +465,7 @@
       "get": {
         "operationId": "list_reporter_articles",
         "summary": "List Reporter Articles",
-        "description": "Browse indexed article links and metadata in pages of 20. Requires Connect or Professional. Full article text is not included.\n\nRequired key scope: `articles:read`.",
+        "description": "Browse indexed article links and metadata in pages of 20. Requires an active Professional subscription. Full article text is not included.\n\nRequired key scope: `articles:read`.",
         "tags": [
           "Reporters"
         ],
@@ -541,7 +541,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -605,7 +605,7 @@
       "post": {
         "operationId": "reveal_reporter_contacts",
         "summary": "Reveal Reporter Contacts",
-        "description": "Explicitly reveal the currently eligible email for a reporter. Requires Connect or Professional. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
+        "description": "Explicitly reveal the currently eligible email for a reporter. Requires an active Professional subscription. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
         "tags": [
           "Reporters"
         ],
@@ -682,7 +682,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -826,7 +826,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -997,7 +997,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1061,7 +1061,7 @@
       "get": {
         "operationId": "list_outlet_reporters",
         "summary": "List Outlet Reporters",
-        "description": "Browse current accepted reporter relationships for an active outlet, in pages of 25. Requires Connect or Professional.\n\nRequired key scope: `outlets:read`.",
+        "description": "Browse current accepted reporter relationships for an active outlet, in pages of 25. Requires an active Professional subscription.\n\nRequired key scope: `outlets:read`.",
         "tags": [
           "Outlets"
         ],
@@ -1137,7 +1137,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1201,7 +1201,7 @@
       "get": {
         "operationId": "list_outlet_articles",
         "summary": "List Outlet Articles",
-        "description": "Browse accepted indexed article links for an outlet, in pages of 25. Requires Connect or Professional. Full article text is excluded.\n\nRequired key scope: `articles:read`.",
+        "description": "Browse accepted indexed article links for an outlet, in pages of 25. Requires an active Professional subscription. Full article text is excluded.\n\nRequired key scope: `articles:read`.",
         "tags": [
           "Outlets"
         ],
@@ -1277,7 +1277,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1341,7 +1341,7 @@
       "post": {
         "operationId": "reveal_outlet_contacts",
         "summary": "Reveal Outlet Contacts",
-        "description": "Explicitly reveal eligible editorial/newsroom contacts and pitching guidance. Requires Connect or Professional. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
+        "description": "Explicitly reveal eligible editorial/newsroom contacts and pitching guidance. Requires an active Professional subscription. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
         "tags": [
           "Outlets"
         ],
@@ -1418,7 +1418,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1550,7 +1550,7 @@
             }
           },
           "403": {
-            "description": "Key scope or subscription does not allow this operation.",
+            "description": "An active Professional subscription and the required key scope are required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1617,7 +1617,7 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "Reporters API Key",
-        "description": "Create an API key in your Reporters account. Send `Authorization: Bearer YOUR_API_KEY`. Required scopes are specified per operation."
+        "description": "An active Professional subscription is required to create and use API keys. Manage keys in your Reporters account. Send `Authorization: Bearer YOUR_API_KEY`. Required scopes are specified per operation."
       }
     },
     "schemas": {
@@ -1627,8 +1627,6 @@
           "plan": {
             "type": "string",
             "enum": [
-              "free",
-              "connect",
               "professional"
             ]
           },

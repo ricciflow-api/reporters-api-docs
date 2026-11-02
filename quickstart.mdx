@@ -6,11 +6,11 @@ keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-Make your first Reporters.io request by creating an API key and using it to search the reporter directory. Keep the key in a server-side environment or your terminal session.
+Make your first Reporters.io request with an active Professional (Pro) subscription. Pro access is required to create an API key and call the REST API or MCP server. Keep the key in a server-side environment or your terminal session.
 
 <Steps>
   <Step title="Create an API key">
-    Sign in to [Reporters.io](https://reporters.io) and open [API keys](https://reporters.io/account/api-keys). Create a key with `account:read` and `reporters:read` access. Copy the key when it is shown.
+    Sign in to [Reporters.io](https://reporters.io) with an active Professional (Pro) subscription and open [API keys](https://reporters.io/account/api-keys). Create a key with `account:read` and `reporters:read` access. Copy the key when it is shown.
   </Step>
   <Step title="Set your key">
     Store the key in `REPORTERS_API_KEY`. Read it without echoing it into terminal history:
@@ -27,7 +27,7 @@ Make your first Reporters.io request by creating an API key and using it to sear
       -H "Authorization: Bearer $REPORTERS_API_KEY"
     ```
 
-    A successful request returns your API account context. A `401` means the key is missing, invalid, expired, or revoked. A `403` means the operation is unavailable to the key or account.
+    A successful request returns your API account context. A `401` means the key is missing, invalid, expired, or revoked. A `403` means the key is missing a required scope or the account does not have active Pro access.
   </Step>
   <Step title="Search for a journalist">
     ```bash

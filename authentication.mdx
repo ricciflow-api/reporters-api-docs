@@ -6,7 +6,7 @@ keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-Reporters.io authenticates API and MCP requests with an API key in the `Authorization` header. Your key's scopes and your account's access both apply to each operation.
+Reporters.io requires an active Professional (Pro) subscription for every REST API and MCP operation and for creating API keys. Send your scoped key in the `Authorization` header. The documentation and public OpenAPI specification remain readable without a subscription.
 
 ```http
 Authorization: Bearer YOUR_API_KEY
@@ -14,11 +14,11 @@ Authorization: Bearer YOUR_API_KEY
 
 ## Create and manage keys
 
-Open [API keys](https://reporters.io/account/api-keys) while signed in to Reporters.io. Give each integration its own key and select only the scopes it needs. Store the key when it is shown, then keep it in your server's secret settings or your MCP client's protected configuration.
+Open [API keys](https://reporters.io/account/api-keys) while signed in to an account with an active Professional (Pro) subscription. Give each integration its own key and select only the scopes it needs. Store the key when it is shown, then keep it in your server's secret settings or your MCP client's protected configuration.
 
 Keys expire after 90 days by default. You can choose an expiry up to 365 days, and an account can have up to 10 active keys.
 
-Revoke a key when an integration no longer needs access. Replace a key if it has been exposed.
+Revoke a key when an integration no longer needs access. Replace a key if it has been exposed. Revoked or expired keys cannot authorize requests. If your account loses active Pro access, its existing keys stop authorizing API and MCP requests. You can still manage and revoke existing keys after a downgrade.
 
 ## Choose scopes
 
@@ -35,11 +35,11 @@ Search and profile scopes do not reveal contact details. Grant `contacts:read` o
 
 ## Use the same key with MCP
 
-The hosted [MCP server](/mcp-guide) accepts the same bearer header at `https://reporters.io/api/mcp`. The local MCP adapter reads `REPORTERS_API_KEY` from its environment.
+The hosted [MCP server](/mcp-guide) accepts the same bearer header at `https://reporters.io/api/mcp`. Use your MCP client's protected settings to provide the key. The REST examples and agent skill read `REPORTERS_API_KEY` from the environment.
 
 ## Handle authentication failures
 
 - `401`: Check that the key was copied correctly and is still active.
-- `403`: Check the key's scopes and your account access.
+- `403`: Check the key's scopes and confirm that your account still has an active Professional (Pro) subscription.
 
 See [errors](/errors) for the shared error response. Keep keys out of URLs, browser bundles, public repositories, prompts, and application logs.

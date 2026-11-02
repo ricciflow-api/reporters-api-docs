@@ -6,7 +6,7 @@ keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-The Reporters.io MCP server lets an assistant use the same reporter, outlet, article, and contact operations as the REST API. It uses your API key's scopes and your account access.
+The Reporters.io MCP server lets an assistant use the same reporter, outlet, article, and contact operations as the REST API. An active Professional (Pro) subscription is required for the MCP connection and every operation, including initialization and tool discovery. Creating the scoped API key also requires active Pro access.
 
 ## Hosted MCP
 
@@ -47,4 +47,4 @@ Contact details require a separate reveal operation and the `contacts:read` scop
 
 ## Troubleshoot
 
-A `401` usually indicates an API-key problem. A `403` indicates missing scope or account access. Verify the same key with the REST API and read [error handling](/errors).
+A `401` usually indicates an API-key problem. A `403` indicates a missing scope or an account without active Professional (Pro) access. Revoked or expired keys do not authorize requests, and existing keys stop working after the account loses Pro access. You can still revoke existing keys in API-key management after a downgrade. The documentation and public OpenAPI specification remain readable without a subscription. Verify the same key with the REST API and read [error handling](/errors).

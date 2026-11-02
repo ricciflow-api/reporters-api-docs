@@ -12,7 +12,7 @@ Reporters.io returns an unsuccessful HTTP status when a request cannot complete.
 | --- | --- |
 | `400` | Request syntax, required values, accepted filters, and pagination values. |
 | `401` | Missing, invalid, expired, or revoked API key. |
-| `403` | API-key scopes or account access for the operation. |
+| `403` | A missing API-key scope or an account without active Professional (Pro) access. |
 | `404` | The requested resource ID was not found. |
 | `409` | Changed collection results or an idempotency key reused with different inputs. |
 | `413` or `415` | A request body that is too large or does not use `application/json`. |

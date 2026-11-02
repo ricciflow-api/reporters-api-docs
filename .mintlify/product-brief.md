@@ -14,5 +14,8 @@ Developers and AI-agent users integrating media research into their applications
 ## Motivation
 Provide programmatic access to existing Reporters.io research capabilities under one product domain. The initial contract covers eleven operations; list/export automation and OAuth are outside this release.
 
+## Access policy
+Creating API keys and all REST API and MCP operations require an active Professional (Pro) subscription. Revoked and expired keys are denied; existing keys also lose access when an account loses active Pro status. Existing keys may still be revoked after a downgrade. Public docs and OpenAPI remain readable without a subscription.
+
 ## Decisions
 The docs use the almond Mintlify theme, the existing #FE6320 brand palette and logo, and reporters.io/docs as the public base path. REST uses reporters.io/api/v1 and MCP uses reporters.io/api/mcp. These values were supplied by the approved implementation plan.

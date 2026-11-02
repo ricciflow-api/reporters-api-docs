@@ -6,7 +6,7 @@ keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-The Reporters.io agent skill guides an assistant through media research using the REST API. It pairs task instructions with a small client so the agent can search, inspect records, and cite article references.
+The Reporters.io agent skill guides an assistant through media research using the REST API. An active Professional (Pro) subscription is required to create an API key and use REST or MCP. It pairs task instructions with a small client so the agent can search, inspect records, and cite article references.
 
 ## Get the skill
 
@@ -18,7 +18,7 @@ npx skills add ricciflow-api/reporters-agent-skills
 
 Configure `REPORTERS_API_KEY` in the agent's protected environment.
 
-The skill uses the API at `https://reporters.io/api/v1`. Its key needs only the scopes required by your workflow. See [authentication](/authentication) before granting contact access.
+The skill uses the API at `https://reporters.io/api/v1`. Its key needs only the scopes required by your workflow, and the account must retain active Pro access. Revoked, expired, or downgraded-account keys do not authorize requests; stop when access is denied. See [authentication](/authentication) before granting contact access.
 
 ## Run a research task
 
