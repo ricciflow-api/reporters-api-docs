@@ -1,0 +1,33 @@
+---
+title: "Use the Reporters.io agent skill"
+description: "Add a focused Reporters.io workflow to your coding agent so it can find relevant journalists, inspect coverage, and use contacts with explicit access."
+sidebarTitle: "Agent skills"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+The Reporters.io agent skill guides an assistant through media research using the REST API. It pairs task instructions with a small client so the agent can search, inspect records, and cite article references.
+
+## Get the skill
+
+Use the public [reporters-agent-skills repository](https://github.com/ricciflow-api/reporters-agent-skills). Install it with the following command, or follow the repository README to copy it into your agent's supported skill directory:
+
+```bash
+npx skills add ricciflow-api/reporters-agent-skills
+```
+
+Configure `REPORTERS_API_KEY` in the agent's protected environment.
+
+The skill uses the API at `https://reporters.io/api/v1`. Its key needs only the scopes required by your workflow. See [authentication](/authentication) before granting contact access.
+
+## Run a research task
+
+Give the agent the topic, geography, or outlet you want to investigate and the evidence you need. For example:
+
+> Research journalists who cover climate technology. Use their profile and article references to explain why each person belongs on the shortlist. Keep contact reveal separate until I select a reporter.
+
+Review the returned evidence before using it in an outreach workflow. The skill does not send messages.
+
+## Choose between MCP and skills
+
+Use [MCP](/mcp-guide) when your assistant supports tool connections. Use the skill when your agent runs local scripts and can load task instructions. Both paths use the same account, key scopes, and data-access rules.

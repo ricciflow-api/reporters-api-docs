@@ -1,0 +1,142 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Reporters.io",
+  "theme": "almond",
+  "description": "Find journalists, research media outlets, and connect your application or AI assistant to Reporters.io.",
+  "colors": {
+    "primary": "#FE6320",
+    "light": "#FF9352",
+    "dark": "#993308"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://reporters.io"
+  },
+  "favicon": "/logo/icon.svg",
+  "fonts": {
+    "family": "Inter"
+  },
+  "background": {
+    "color": {
+      "light": "#FDF8F4",
+      "dark": "#16181F"
+    }
+  },
+  "api": {
+    "openapi": "openapi.json",
+    "playground": {
+      "display": "interactive"
+    },
+    "examples": {
+      "languages": [
+        "bash",
+        "javascript",
+        "python"
+      ],
+      "defaults": "required",
+      "prefill": false,
+      "autogenerate": true
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index",
+              "quickstart",
+              "authentication"
+            ]
+          },
+          {
+            "group": "Use the API",
+            "pages": [
+              "search-and-filter",
+              "pagination",
+              "contacts",
+              "data-policy",
+              "errors"
+            ]
+          },
+          {
+            "group": "Build with agents",
+            "pages": [
+              "mcp-guide",
+              "agent-skills",
+              "examples"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "icon": "code",
+        "openapi": "openapi.json",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference"
+            ]
+          },
+          {
+            "group": "Reporters",
+            "pages": [
+              "POST /reporters/search",
+              "GET /reporters/{reporter_id}",
+              "GET /reporters/{reporter_id}/articles",
+              "POST /reporters/{reporter_id}/contacts/reveal"
+            ]
+          },
+          {
+            "group": "Outlets",
+            "pages": [
+              "POST /outlets/search",
+              "GET /outlets/{outlet_id}",
+              "GET /outlets/{outlet_id}/reporters",
+              "GET /outlets/{outlet_id}/articles",
+              "POST /outlets/{outlet_id}/contacts/reveal"
+            ]
+          },
+          {
+            "group": "Account and metadata",
+            "pages": [
+              "GET /account",
+              "GET /metadata/search-filters"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/ricciflow-api/reporters-api-docs"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get API key",
+      "href": "https://reporters.io/account/api-keys"
+    }
+  },
+  "footer": {
+    "socials": {
+      "website": "https://reporters.io",
+      "github": "https://github.com/ricciflow-api"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/mcp",
+      "destination": "/mcp-guide"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+---
+title: "Reveal reporter and outlet contacts"
+description: "Retrieve available Reporters.io contact details through explicit reveal operations that require a scoped API key and the account access for those contacts."
+sidebarTitle: "Contacts"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io keeps contact reveal separate from search and profile reads. Select a reporter or outlet first, then request contact details through its dedicated reveal endpoint.
+
+## Prerequisites
+
+Your key must include `contacts:read`, and your account must have Connect or Professional access to the requested contacts. A scope grants permission to call an operation; it does not add account entitlements.
+
+## Reveal a selected contact
+
+Use the reporter or outlet ID from a previous API response. Set `CONTACT_REQUEST_ID` to a unique value of 8 to 128 visible ASCII characters for this intended reveal and reuse it only when retrying that same request:
+
+```bash
+curl --fail-with-body --request POST \
+  "https://reporters.io/api/v1/reporters/$REPORTER_ID/contacts/reveal" \
+  -H "Authorization: Bearer $REPORTERS_API_KEY" \
+  -H "Idempotency-Key: $CONTACT_REQUEST_ID" \
+  -H 'Content-Type: application/json' \
+  --data '{}'
+```
+
+For an outlet, call `POST /outlets/{outlet_id}/contacts/reveal`. Use the stable outlet ID returned by search.
+
+A reporter reveal returns `data.reporter_id` and `data.email`. An outlet reveal returns `data.outlet_id` and an array of available `data.contacts`. If no eligible contact is available, the operation returns `404`. Missing contact details do not establish that a person or publication has no contact channel. Availability depends on the record and your account access.
+
+## Retry a reveal
+
+Send an `Idempotency-Key` header to make retries refer to the same intended operation. Keep the same request and key when retrying. Use a new value for a different intended reveal. Idempotency records are retained for 24 hours; contact responses are not stored in those records.
+
+## Use contacts responsibly
+
+Limit contact access to the integrations that need it. Keep returned details out of public logs and shared prompts, and follow your organization's privacy and outreach practices.
+
+The API does not send pitches or messages. Review the reporter's coverage, role, and outlet before using a contact channel. See [data handling](/data-policy) and the [API reference](/api-reference) for response details.

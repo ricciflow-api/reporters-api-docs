@@ -1,0 +1,45 @@
+---
+title: "Authenticate with an API key"
+description: "Create scoped Reporters.io API keys, send bearer authentication headers, and control access to reporter, outlet, article, contact, and account data."
+sidebarTitle: "Authentication"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io authenticates API and MCP requests with an API key in the `Authorization` header. Your key's scopes and your account's access both apply to each operation.
+
+```http
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Create and manage keys
+
+Open [API keys](https://reporters.io/account/api-keys) while signed in to Reporters.io. Give each integration its own key and select only the scopes it needs. Store the key when it is shown, then keep it in your server's secret settings or your MCP client's protected configuration.
+
+Keys expire after 90 days by default. You can choose an expiry up to 365 days, and an account can have up to 10 active keys.
+
+Revoke a key when an integration no longer needs access. Replace a key if it has been exposed.
+
+## Choose scopes
+
+| Scope | Access |
+| --- | --- |
+| `reporters:read` | Search reporters and read reporter profiles. |
+| `outlets:read` | Search outlets, read outlet profiles, and inspect associated reporters. |
+| `articles:read` | Read article references associated with a reporter or outlet. |
+| `contacts:read` | Call explicit contact reveal operations when your account has contact access. |
+| `metadata:read` | Read filter metadata. |
+| `account:read` | Read your API account context. |
+
+Search and profile scopes do not reveal contact details. Grant `contacts:read` only to integrations that need contact access.
+
+## Use the same key with MCP
+
+The hosted [MCP server](/mcp-guide) accepts the same bearer header at `https://reporters.io/api/mcp`. The local MCP adapter reads `REPORTERS_API_KEY` from its environment.
+
+## Handle authentication failures
+
+- `401`: Check that the key was copied correctly and is still active.
+- `403`: Check the key's scopes and your account access.
+
+See [errors](/errors) for the shared error response. Keep keys out of URLs, browser bundles, public repositories, prompts, and application logs.

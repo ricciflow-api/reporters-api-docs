@@ -1,0 +1,51 @@
+---
+title: "Reporters.io REST API reference"
+description: "Explore the Reporters.io v1 REST contract for reporter and outlet search, profiles, article references, contact reveal, account access, and filter metadata."
+sidebarTitle: "API overview"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+The Reporters.io v1 API provides eleven operations for media research. The endpoint pages in this tab are generated from the public OpenAPI contract so parameters and response schemas stay aligned.
+
+## Base URL
+
+```text
+https://reporters.io/api/v1
+```
+
+Send your key as `Authorization: Bearer YOUR_API_KEY`. Use HTTPS for every request. Read [authentication](/authentication) for the available scopes.
+
+## Responses
+
+Successful REST responses use `{ "data": ..., "request_id": "..." }`. Collection data includes `items`, `next_cursor`, `has_more`, `total`, and `limit`. The current page's endpoint schema defines the exact record fields. Errors use the separate [error envelope](/errors).
+
+## Reporters
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `POST` | `/reporters/search` | Search journalist records. |
+| `GET` | `/reporters/{reporter_id}` | Read a reporter profile. |
+| `GET` | `/reporters/{reporter_id}/articles` | Read associated article references. |
+| `POST` | `/reporters/{reporter_id}/contacts/reveal` | Reveal available contact details with explicit access. |
+
+## Outlets
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `POST` | `/outlets/search` | Search media outlets. |
+| `GET` | `/outlets/{outlet_id}` | Read an outlet profile. |
+| `GET` | `/outlets/{outlet_id}/reporters` | Read associated reporters. |
+| `GET` | `/outlets/{outlet_id}/articles` | Read associated article references. |
+| `POST` | `/outlets/{outlet_id}/contacts/reveal` | Reveal available outlet contact details with explicit access. |
+
+Outlet paths use stable outlet IDs returned by the API, not website slugs.
+
+## Account and metadata
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/account` | Read your API account context. |
+| `GET` | `/metadata/search-filters` | Discover supported filter metadata. |
+
+The [MCP server](/mcp-guide) exposes these operations to assistants using the same access rules. Search and profile responses keep contact details separate from explicit [contact reveal](/contacts).

@@ -1,0 +1,50 @@
+---
+title: "Connect Reporters.io to an AI assistant"
+description: "Connect an MCP client to Reporters.io using the hosted server, with scoped API keys for reporter, outlet, article, and contact operations."
+sidebarTitle: "MCP"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+The Reporters.io MCP server lets an assistant use the same reporter, outlet, article, and contact operations as the REST API. It uses your API key's scopes and your account access.
+
+## Hosted MCP
+
+Use Streamable HTTP at `https://reporters.io/api/mcp`. Configure your client to send your API key as a bearer header:
+
+```json
+{
+  "mcpServers": {
+    "reporters": {
+      "url": "https://reporters.io/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+Replace `YOUR_API_KEY` in your client's protected settings. The exact configuration location depends on the MCP client.
+
+## Connection reference
+
+The public [reporters-mcp repository](https://github.com/ricciflow-api/reporters-mcp) contains server metadata, connection examples, and discovery checks for the hosted server. Use a client that supports remote Streamable HTTP and bearer headers.
+
+## Tools and results
+
+The hosted server exposes `get_account`, reporter and outlet search/profile tools, associated article tools, explicit contact-reveal tools, and `get_search_filters`. Tool input names match the REST contract: use `reporter_id` and `outlet_id`, and use the returned IDs instead of guessing them.
+
+Read each tool's `structuredContent` for the full result envelope. For a deliberate retry, reuse the same optional `idempotency_key` input with identical parameters. Use a different value for a different intended request.
+
+## Choose a workflow
+
+Ask the assistant to search for a topic, inspect relevant reporter profiles, and cite returned article links before choosing contacts. For example:
+
+> Find reporters covering climate technology. Review their profiles and recent article references, then give me a short, source-linked shortlist.
+
+Contact details require a separate reveal operation and the `contacts:read` scope. The server does not send pitches or messages.
+
+## Troubleshoot
+
+A `401` usually indicates an API-key problem. A `403` indicates missing scope or account access. Verify the same key with the REST API and read [error handling](/errors).

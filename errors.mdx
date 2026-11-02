@@ -1,0 +1,48 @@
+---
+title: "Handle API and MCP errors"
+description: "Diagnose Reporters.io authentication, validation, access, throttling, and temporary service errors, and use safe retry behavior in your API integration."
+sidebarTitle: "Errors"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io returns an unsuccessful HTTP status when a request cannot complete. Check the response body for the error code and message before deciding whether to retry.
+
+| HTTP status | What to check |
+| --- | --- |
+| `400` | Request syntax, required values, accepted filters, and pagination values. |
+| `401` | Missing, invalid, expired, or revoked API key. |
+| `403` | API-key scopes or account access for the operation. |
+| `404` | The requested resource ID was not found. |
+| `409` | Changed collection results or an idempotency key reused with different inputs. |
+| `413` or `415` | A request body that is too large or does not use `application/json`. |
+| `429` | Requests are being throttled. Wait before trying again. |
+| `503` | A temporary service failure may have prevented completion. |
+
+## Read the error response
+
+Errors use the same envelope across REST operations. For example, an invalid or expired cursor returns:
+
+```json
+{
+  "error": {
+    "code": "INVALID_CURSOR",
+    "message": "Invalid or expired cursor. Start again without a cursor."
+  },
+  "request_id": "00000000-0000-4000-8000-000000000001"
+}
+```
+
+The request ID above is illustrative. Save the actual `request_id` or `X-Request-Id` response header when reporting a failure.
+
+## Retry carefully
+
+For throttling, follow `Retry-After` when the response includes it. For temporary server or network failures, retry with increasing delays and a bounded attempt count.
+
+Do not repeat an invalid request until you have corrected its inputs. Do not retry a denied request until the key or account access has changed. Keep contact reveal calls separate from automatic search and pagination retries.
+
+## Report an issue
+
+Keep the status, operation, error code, and any request identifier returned by the API. Redact your API key and contact details before sharing logs.
+
+The [API reference](/api-reference) defines the current error schema. [Authentication](/authentication) explains scope and credential failures, while [MCP](/mcp-guide) covers agent connections.

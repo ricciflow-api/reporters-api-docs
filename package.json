@@ -1,0 +1,17 @@
+{
+  "name": "reporters-api-docs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/validate.mjs",
+    "dev": "npx mint dev --no-open",
+    "validate": "npx mint validate",
+    "check:links": "npx mint broken-links",
+    "check:live": "node scripts/validate.mjs --live",
+    "check:site": "node scripts/verify-live-docs.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

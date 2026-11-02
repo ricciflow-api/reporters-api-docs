@@ -1,0 +1,43 @@
+---
+title: "Search reporters and outlets"
+description: "Search Reporters.io journalist and media outlet records, discover supported filters, and keep stable resource IDs when building a research workflow."
+sidebarTitle: "Search"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io provides separate search operations for reporters and media outlets. Start with a topic or name, then use the documented filters to refine your research.
+
+## Search reporters
+
+```bash
+curl --fail-with-body \
+  'https://reporters.io/api/v1/reporters/search' \
+  -H "Authorization: Bearer $REPORTERS_API_KEY" \
+  -H 'Content-Type: application/json' \
+  --data '{"query":"climate technology"}'
+```
+
+Use a returned reporter ID to read the profile or associated article references. Search results do not include revealed contact details.
+
+## Search outlets
+
+```bash
+curl --fail-with-body \
+  'https://reporters.io/api/v1/outlets/search' \
+  -H "Authorization: Bearer $REPORTERS_API_KEY" \
+  -H 'Content-Type: application/json' \
+  --data '{"query":"technology"}'
+```
+
+Keep the outlet ID returned by the API. Outlet paths use stable resource IDs, not a publication's name or website slug.
+
+## Discover filters
+
+Read `GET /accounttadata/search-filters` with a key that has `metadata:read` access. Use the returned options and the endpoint schema when constructing a search request. Reporter search accepts `beats`, `region`, `country`, and `state`. Outlet search accepts `region` and `country`. Country and state filtering require Professional access. The [API reference](/api-reference) is the source for accepted values and the complete request schema.
+
+## Continue research
+
+Read a profile before selecting a contact. Article endpoints return associated article references; a matching article or topic is evidence for your review, not a guarantee that a journalist accepts a pitch.
+
+Follow [pagination](/pagination) when the result includes another page. Use [contact reveal](/contacts) only when you need contact details.

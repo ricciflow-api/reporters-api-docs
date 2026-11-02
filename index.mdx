@@ -1,0 +1,39 @@
+---
+title: "Build with Reporters.io"
+description: "Search journalists and media outlets, read article references, and reveal available contacts using the Reporters.io REST API and MCP server."
+sidebarTitle: "Overview"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Use Reporters.io to find journalists and media outlets for your research workflow. Start with the REST API, connect an MCP client, or use the same endpoints from an agent skill.
+
+<Columns cols={2}>
+  <Card title="Make your first request" icon="terminal" href="/quickstart">
+    Create an API key and search for a reporter from your application.
+  </Card>
+  <Card title="Explore the API" icon="code" href="/api-reference">
+    Review search, profiles, article references, and contact reveal operations.
+  </Card>
+  <Card title="Connect an AI assistant" icon="robot" href="/mcp-guide">
+    Connect an MCP client to the hosted server with your API key.
+  </Card>
+  <Card title="Use an agent skill" icon="bolt" href="/agent-skills">
+    Give an agent a focused workflow for reporter and outlet research.
+  </Card>
+</Columns>
+
+## One account, two interfaces
+
+The REST API is available at `https://reporters.io/api/v1`. The MCP server is available at `https://reporters.io/api/mcp`. Both use your Reporters.io API key and account access.
+
+Search and profile responses keep contact details separate. Use a dedicated [contact reveal operation](/contacts) when your account and API key can access them.
+
+## What you can build
+
+- Find journalists who cover a topic and inspect their profile.
+- Read article references associated with a reporter or outlet.
+- Research an outlet and the reporters associated with it.
+- Reveal available contact details with explicit contact access.
+
+Start with the [quickstart](/quickstart), then read [authentication](/authentication) and [data handling](/data-policy).

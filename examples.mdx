@@ -1,0 +1,63 @@
+---
+title: "Use Reporters.io code examples"
+description: "Start a Reporters.io integration with cURL, JavaScript, or Python examples, and use a scoped API key to search reporters and media outlet records."
+sidebarTitle: "Examples"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Use the Reporters.io examples to connect your application to the API. Each example reads a key from the environment and calls the same public REST endpoints.
+
+## Search with cURL
+
+```bash
+curl --fail-with-body \
+  'https://reporters.io/api/v1/reporters/search' \
+  -H "Authorization: Bearer $REPORTERS_API_KEY" \
+  -H 'Content-Type: application/json' \
+  --data '{"query":"climate technology"}'
+```
+
+## Search with JavaScript
+
+```javascript
+const apiKey = process.env.REPORTERS_API_KEY;
+if (!apiKey) throw new Error("Set REPORTERS_API_KEY");
+
+const response = await fetch("https://reporters.io/api/v1/reporters/search", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ query: "climate technology" }),
+});
+if (!response.ok) throw new Error(`Reporters.io request failed: ${response.status}`);
+console.log(await response.json());
+```
+
+Run this code in a server-side JavaScript environment. Do not put the key in browser code.
+
+## Search with Python
+
+```python
+import json
+import os
+from urllib.request import Request, urlopen
+
+request = Request(
+    "https://reporters.io/api/v1/reporters/search",
+    data=json.dumps({"query": "climate technology"}).encode(),
+    headers={
+        "Authorization": f"Bearer {os.environ['REPORTERS_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    method="POST",
+)
+with urlopen(request, timeout=30) as response:
+    print(json.load(response))
+```
+
+## Runnable integrations
+
+The public [reporters-api-examples repository](https://github.com/ricciflow-api/reporters-api-examples) contains maintained examples. Read [pagination](/pagination) and [errors](/errors) before adding a multi-page workflow.

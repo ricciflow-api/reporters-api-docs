@@ -1,0 +1,31 @@
+---
+title: "Understand the data you receive"
+description: "Interpret Reporters.io profile, outlet, article, and contact responses, distinguish unavailable fields, and handle media research data in your integration."
+sidebarTitle: "Data handling"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io returns records for media research. Use the fields and article references as evidence to review, and preserve the distinction between a missing value and a confirmed fact.
+
+## Profiles and contacts
+
+Search and profile responses do not expose revealed contact details. A selected record's [contact reveal operation](/contacts) applies the key's scopes and your account access separately.
+
+Fields may be absent or null when a value is unavailable. Do not infer an email address or phone number from a person's name, an outlet's domain, or a missing contact result.
+
+## Article references
+
+Article endpoints require Connect or Professional access and identify coverage associated with a reporter or outlet. A title and link help you inspect the original publication; they do not grant a license to republish the article's full content.
+
+Follow source links when checking context, publication dates, and current coverage. An article association does not guarantee a journalist's present role or interest in a pitch.
+
+## Stable identifiers
+
+Store the resource ID returned by the API for reporter and outlet follow-up requests. Names, domains, and website slugs can change and should not replace API identifiers.
+
+## Protect research data
+
+Keep API keys and returned contact details in systems with appropriate access controls. Send an AI assistant only the data it needs for the current task, and review agent output before acting on it.
+
+Your application's use of data remains subject to the [Reporters.io terms](https://reporters.io/terms) and [privacy policy](https://reporters.io/privacy).

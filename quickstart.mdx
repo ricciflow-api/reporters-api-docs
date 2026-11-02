@@ -1,0 +1,67 @@
+---
+title: "Get started with the Reporters.io API"
+description: "Create a scoped API key, verify account access, and make your first journalist search request through the Reporters.io REST API from your terminal."
+sidebarTitle: "Quickstart"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Make your first Reporters.io request by creating an API key and using it to search the reporter directory. Keep the key in a server-side environment or your terminal session.
+
+<Steps>
+  <Step title="Create an API key">
+    Sign in to [Reporters.io](https://reporters.io) and open [API keys](https://reporters.io/account/api-keys). Create a key with `account:read` and `reporters:read` access. Copy the key when it is shown.
+  </Step>
+  <Step title="Set your key">
+    Store the key in `REPORTERS_API_KEY`. Read it without echoing it into terminal history:
+
+    ```bash
+    read -rs REPORTERS_API_KEY
+    export REPORTERS_API_KEY
+    ```
+  </Step>
+  <Step title="Check your account">
+    ```bash
+    curl --fail-with-body \
+      'https://reporters.io/api/v1/account' \
+      -H "Authorization: Bearer $REPORTERS_API_KEY"
+    ```
+
+    A successful request returns your API account context. A `401` means the key is missing, invalid, expired, or revoked. A `403` means the operation is unavailable to the key or account.
+  </Step>
+  <Step title="Search for a journalist">
+    ```bash
+    curl --fail-with-body \
+      'https://reporters.io/api/v1/reporters/search' \
+      -H "Authorization: Bearer $REPORTERS_API_KEY" \
+      -H 'Content-Type: application/json' \
+      --data '{"query":"climate technology"}'
+    ```
+
+    Inspect the returned reporter IDs before requesting a profile, articles, or contact details. The [API reference](/api-reference) defines the complete request and response schema.
+  </Step>
+</Steps>
+
+## Read the response
+
+Successful responses contain `data` and a `request_id`. A search with no matches can return the following illustrative response; IDs and timestamps vary:
+
+```json
+{
+  "data": {
+    "items": [],
+    "next_cursor": null,
+    "has_more": false,
+    "total": 0,
+    "limit": 20,
+    "snapshot_expires_at": "2026-11-01T20:15:00.000Z"
+  },
+  "request_id": "00000000-0000-4000-8000-000000000001"
+}
+```
+
+For a nonempty result, `data.items` contains reporter records. Keep their `id` values for follow-up requests.
+
+## Continue your integration
+
+Read [search and filters](/search-and-filter) to refine results. Use [MCP](/mcp-guide) to connect an assistant, or start with runnable [code examples](/examples).

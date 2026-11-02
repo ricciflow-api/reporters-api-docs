@@ -1,0 +1,33 @@
+---
+title: "Page through API results"
+description: "Continue Reporters.io search, reporter, and article results using the pagination contract in each endpoint while preserving your original query and filters."
+sidebarTitle: "Pagination"
+keywords: ["Reporters.io", "API", "journalists", "media contacts"]
+---
+
+
+Reporters.io returns bounded result pages for operations that can match multiple records. Use each operation's documented pagination fields to continue the same query.
+
+## Preserve the query
+
+Keep your search text, filters, and page limit unchanged when requesting another page. If you change the query or filters, begin a new result set.
+
+Collection responses include `items`, `next_cursor`, `has_more`, `total`, and `limit` inside `data`. Pass `next_cursor` as `cursor` on the next request. Stop when `has_more` is false or `next_cursor` is null.
+
+Search continues within a bounded snapshot of up to 100 matched IDs. The snapshot expires after 15 minutes, as indicated by `snapshot_expires_at`. The cursor belongs to your API key and query. Begin a fresh search if it expires. The `total` value describes that bounded match set, not the size of the full directory.
+
+Treat cursors as opaque values. The [API reference](/api-reference) defines the exact pagination inputs for each endpoint.
+
+## Collection page sizes
+
+Search accepts `limit` from 1 to 100, with a default of 20. Reporter article pages contain up to 20 records. Outlet reporter and article pages contain up to 25 records; these collection endpoints do not accept a custom `limit`.
+
+## Handle changing records
+
+Reporter, outlet, and article fields can change between requests even when a search snapshot keeps the matched IDs fixed. Deduplicate records using their API resource IDs if your application stores results across pages. A search is a research result at the time it runs; it is not a fixed database snapshot.
+
+## Keep contact requests separate
+
+Paging through profiles does not reveal contact details. Use a dedicated [contact reveal operation](/contacts) for a selected reporter or outlet when the integration needs that information.
+
+Retry transient errors according to [error handling](/errors). Do not automatically repeat contact reveal operations as part of a pagination retry loop.
