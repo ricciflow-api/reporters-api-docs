@@ -1,6 +1,6 @@
 ---
 title: "Get started with the Reporters.io API"
-description: "Create a scoped API key, verify account access, and make your first journalist search request through the Reporters.io REST API from your terminal."
+description: "Create a named API key, verify active Pro access, and make your first journalist search request through the Reporters.io REST API from your terminal."
 sidebarTitle: "Quickstart"
 keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
@@ -10,7 +10,7 @@ Make your first Reporters.io request with an active Professional (Pro) subscript
 
 <Steps>
   <Step title="Create an API key">
-    Sign in to [Reporters.io](https://reporters.io) with an active Professional (Pro) subscription and open [API keys](https://reporters.io/account/api-keys). Create a key with `account:read` and `reporters:read` access. Copy the key when it is shown.
+    Sign in to [Reporters.io](https://reporters.io) with an active Professional (Pro) subscription and open [API keys](https://reporters.io/account/api-keys). Enter a name, create the key, and copy it when it is shown. All six API permissions are included automatically, and keys do not expire automatically.
   </Step>
   <Step title="Set your key">
     Store the key in `REPORTERS_API_KEY`. Read it without echoing it into terminal history:
@@ -27,7 +27,7 @@ Make your first Reporters.io request with an active Professional (Pro) subscript
       -H "Authorization: Bearer $REPORTERS_API_KEY"
     ```
 
-    A successful request returns your API account context. A `401` means the key is missing, invalid, expired, or revoked. A `403` means the key is missing a required scope or the account does not have active Pro access.
+    A successful request returns your API account context. A `401` means the key is missing, invalid, or revoked. A `403` means the account does not have active Pro access.
   </Step>
   <Step title="Search for a journalist">
     ```bash

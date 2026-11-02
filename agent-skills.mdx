@@ -18,7 +18,7 @@ npx skills add ricciflow-api/reporters-agent-skills
 
 Configure `REPORTERS_API_KEY` in the agent's protected environment.
 
-The skill uses the API at `https://reporters.io/api/v1`. Its key needs only the scopes required by your workflow, and the account must retain active Pro access. Revoked, expired, or downgraded-account keys do not authorize requests; stop when access is denied. See [authentication](/authentication) before granting contact access.
+The skill uses the API at `https://reporters.io/api/v1`. Create a key by entering a name; all six API permissions are included automatically, with no automatic expiration. The account must retain active Pro access. Revoked keys and keys on accounts without active Pro access do not authorize requests; stop when access is denied. See [authentication](/authentication) for key management.
 
 ## Run a research task
 
@@ -30,4 +30,4 @@ Review the returned evidence before using it in an outreach workflow. The skill 
 
 ## Choose between MCP and skills
 
-Use [MCP](/mcp-guide) when your assistant supports tool connections. Use the skill when your agent runs local scripts and can load task instructions. Both paths use the same account, key scopes, and data-access rules.
+Use [MCP](/mcp-guide) when your assistant supports tool connections. Use the skill when your agent runs local scripts and can load task instructions. Both paths use the same account, included API permissions, and data-access rules.

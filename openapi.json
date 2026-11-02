@@ -29,7 +29,7 @@
       "get": {
         "operationId": "get_account",
         "summary": "Get Account",
-        "description": "Read the current plan, enabled capabilities, and key scopes.\n\nRequired key scope: `account:read`.",
+        "description": "Read the current plan, enabled capabilities, and key scopes.\n\nPermission: `account:read` (included with every API key).",
         "tags": [
           "Account"
         ],
@@ -84,7 +84,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -148,7 +148,7 @@
       "post": {
         "operationId": "search_reporters",
         "summary": "Search Reporters",
-        "description": "Find reporters by topic, beats, and geography. Contacts require a separate explicit reveal.\n\nRequired key scope: `reporters:read`.",
+        "description": "Find reporters by topic, beats, and geography. Contacts require a separate explicit reveal.\n\nPermission: `reporters:read` (included with every API key).",
         "tags": [
           "Reporters"
         ],
@@ -215,7 +215,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -335,7 +335,7 @@
       "get": {
         "operationId": "get_reporter",
         "summary": "Get Reporter",
-        "description": "Read an eligible public reporter profile without revealing private contact data.\n\nRequired key scope: `reporters:read`.",
+        "description": "Read an eligible public reporter profile without revealing private contact data.\n\nPermission: `reporters:read` (included with every API key).",
         "tags": [
           "Reporters"
         ],
@@ -401,7 +401,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -465,7 +465,7 @@
       "get": {
         "operationId": "list_reporter_articles",
         "summary": "List Reporter Articles",
-        "description": "Browse indexed article links and metadata in pages of 20. Requires an active Professional subscription. Full article text is not included.\n\nRequired key scope: `articles:read`.",
+        "description": "Browse indexed article links and metadata in pages of 20. Requires an active Professional subscription. Full article text is not included.\n\nPermission: `articles:read` (included with every API key).",
         "tags": [
           "Reporters"
         ],
@@ -541,7 +541,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -605,7 +605,7 @@
       "post": {
         "operationId": "reveal_reporter_contacts",
         "summary": "Reveal Reporter Contacts",
-        "description": "Explicitly reveal the currently eligible email for a reporter. Requires an active Professional subscription. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
+        "description": "Explicitly reveal the currently eligible email for a reporter. Requires an active Professional subscription. Supports Idempotency-Key.\n\nPermission: `contacts:read` (included with every API key).",
         "tags": [
           "Reporters"
         ],
@@ -682,7 +682,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -759,7 +759,7 @@
       "post": {
         "operationId": "search_outlets",
         "summary": "Search Outlets",
-        "description": "Find outlets by name, topic, and geography. A bounded ranked result snapshot supports continuation pages.\n\nRequired key scope: `outlets:read`.",
+        "description": "Find outlets by name, topic, and geography. A bounded ranked result snapshot supports continuation pages.\n\nPermission: `outlets:read` (included with every API key).",
         "tags": [
           "Outlets"
         ],
@@ -826,7 +826,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -931,7 +931,7 @@
       "get": {
         "operationId": "get_outlet",
         "summary": "Get Outlet",
-        "description": "Read an active outlet by its stable UUID. Private editorial contacts are excluded.\n\nRequired key scope: `outlets:read`.",
+        "description": "Read an active outlet by its stable UUID. Private editorial contacts are excluded.\n\nPermission: `outlets:read` (included with every API key).",
         "tags": [
           "Outlets"
         ],
@@ -997,7 +997,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1061,7 +1061,7 @@
       "get": {
         "operationId": "list_outlet_reporters",
         "summary": "List Outlet Reporters",
-        "description": "Browse current accepted reporter relationships for an active outlet, in pages of 25. Requires an active Professional subscription.\n\nRequired key scope: `outlets:read`.",
+        "description": "Browse current accepted reporter relationships for an active outlet, in pages of 25. Requires an active Professional subscription.\n\nPermission: `outlets:read` (included with every API key).",
         "tags": [
           "Outlets"
         ],
@@ -1137,7 +1137,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1201,7 +1201,7 @@
       "get": {
         "operationId": "list_outlet_articles",
         "summary": "List Outlet Articles",
-        "description": "Browse accepted indexed article links for an outlet, in pages of 25. Requires an active Professional subscription. Full article text is excluded.\n\nRequired key scope: `articles:read`.",
+        "description": "Browse accepted indexed article links for an outlet, in pages of 25. Requires an active Professional subscription. Full article text is excluded.\n\nPermission: `articles:read` (included with every API key).",
         "tags": [
           "Outlets"
         ],
@@ -1277,7 +1277,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1341,7 +1341,7 @@
       "post": {
         "operationId": "reveal_outlet_contacts",
         "summary": "Reveal Outlet Contacts",
-        "description": "Explicitly reveal eligible editorial/newsroom contacts and pitching guidance. Requires an active Professional subscription. Supports Idempotency-Key.\n\nRequired key scope: `contacts:read`.",
+        "description": "Explicitly reveal eligible editorial/newsroom contacts and pitching guidance. Requires an active Professional subscription. Supports Idempotency-Key.\n\nPermission: `contacts:read` (included with every API key).",
         "tags": [
           "Outlets"
         ],
@@ -1418,7 +1418,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1495,7 +1495,7 @@
       "get": {
         "operationId": "get_search_filters",
         "summary": "Get Search Filters",
-        "description": "List canonical beats, countries, and regions accepted by search.\n\nRequired key scope: `metadata:read`.",
+        "description": "List canonical beats, countries, and regions accepted by search.\n\nPermission: `metadata:read` (included with every API key).",
         "tags": [
           "Metadata"
         ],
@@ -1550,7 +1550,7 @@
             }
           },
           "403": {
-            "description": "An active Professional subscription and the required key scope are required.",
+            "description": "An active Professional subscription is required.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1617,7 +1617,7 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "Reporters API Key",
-        "description": "An active Professional subscription is required to create and use API keys. Manage keys in your Reporters account. Send `Authorization: Bearer YOUR_API_KEY`. Required scopes are specified per operation."
+        "description": "An active Professional subscription is required to create and use API keys. Manage keys in your Reporters account. Send `Authorization: Bearer YOUR_API_KEY`. Create a key with a name only. All API permissions are included automatically, and keys never expire. Revoke a key to stop its access."
       }
     },
     "schemas": {

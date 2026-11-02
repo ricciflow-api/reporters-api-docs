@@ -1,6 +1,6 @@
 ---
 title: "Reveal reporter and outlet contacts"
-description: "Retrieve available Reporters.io contact details through explicit reveal operations that require a scoped API key and the account access for those contacts."
+description: "Retrieve available Reporters.io contact details through explicit reveal operations that require an API key and the account access for those contacts."
 sidebarTitle: "Contacts"
 keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
@@ -10,7 +10,7 @@ Reporters.io keeps contact reveal separate from search and profile reads. Select
 
 ## Prerequisites
 
-Your account must have an active Professional (Pro) subscription, as required for all REST API and MCP operations. Your key must also include `contacts:read`. A scope grants permission to call an operation; it does not add Pro access or make an unavailable contact eligible.
+Your account must have an active Professional (Pro) subscription, as required for all REST API and MCP operations. Every API key includes contact access automatically, but you must still call the separate reveal operation for a selected reporter or outlet. An API key does not add Pro access or make an unavailable contact eligible.
 
 ## Reveal a selected contact
 

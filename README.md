@@ -1,6 +1,6 @@
 # Reporters.io documentation
 
-Mintlify source for [reporters.io/docs](https://reporters.io/docs). REST base: `https://reporters.io/api/v1`; hosted MCP: `https://reporters.io/api/mcp`. Creating API keys and using REST or MCP require an active Professional (Pro) subscription. The documentation and public OpenAPI specification remain readable without a subscription.
+Mintlify source for [reporters.io/docs](https://reporters.io/docs). REST base: `https://reporters.io/api/v1`; hosted MCP: `https://reporters.io/api/mcp`. Creating API keys and using REST or MCP require an active Professional (Pro) subscription. Create a key by entering a name; every key includes all six API permissions automatically, has no automatic expiration, and can be revoked. Accounts can have up to 10 active keys. The documentation and public OpenAPI specification remain readable without a subscription.
 
 ## Develop
 

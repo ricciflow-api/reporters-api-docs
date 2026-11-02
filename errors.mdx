@@ -11,8 +11,8 @@ Reporters.io returns an unsuccessful HTTP status when a request cannot complete.
 | HTTP status | What to check |
 | --- | --- |
 | `400` | Request syntax, required values, accepted filters, and pagination values. |
-| `401` | Missing, invalid, expired, or revoked API key. |
-| `403` | A missing API-key scope or an account without active Professional (Pro) access. |
+| `401` | Missing, invalid, or revoked API key. |
+| `403` | An account without active Professional (Pro) access, or another access denial. |
 | `404` | The requested resource ID was not found. |
 | `409` | Changed collection results or an idempotency key reused with different inputs. |
 | `413` or `415` | A request body that is too large or does not use `application/json`. |
@@ -45,4 +45,4 @@ Do not repeat an invalid request until you have corrected its inputs. Do not ret
 
 Keep the status, operation, error code, and any request identifier returned by the API. Redact your API key and contact details before sharing logs.
 
-The [API reference](/api-reference) defines the current error schema. [Authentication](/authentication) explains scope and credential failures, while [MCP](/mcp-guide) covers agent connections.
+The [API reference](/api-reference) defines the current error schema. [Authentication](/authentication) explains subscription and credential failures, while [MCP](/mcp-guide) covers agent connections.

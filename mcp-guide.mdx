@@ -1,12 +1,12 @@
 ---
 title: "Connect Reporters.io to an AI assistant"
-description: "Connect an MCP client to Reporters.io using the hosted server, with scoped API keys for reporter, outlet, article, and contact operations."
+description: "Connect an MCP client to Reporters.io using the hosted server, with API keys that include reporter, outlet, article, and contact permissions automatically."
 sidebarTitle: "MCP"
 keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-The Reporters.io MCP server lets an assistant use the same reporter, outlet, article, and contact operations as the REST API. An active Professional (Pro) subscription is required for the MCP connection and every operation, including initialization and tool discovery. Creating the scoped API key also requires active Pro access.
+The Reporters.io MCP server lets an assistant use the same reporter, outlet, article, and contact operations as the REST API. An active Professional (Pro) subscription is required for the MCP connection and every operation, including initialization and tool discovery. Creating an API key also requires active Pro access. Enter a name to create one; all six API permissions are included automatically, and keys do not expire automatically.
 
 ## Hosted MCP
 
@@ -43,8 +43,8 @@ Ask the assistant to search for a topic, inspect relevant reporter profiles, and
 
 > Find reporters covering climate technology. Review their profiles and recent article references, then give me a short, source-linked shortlist.
 
-Contact details require a separate reveal operation and the `contacts:read` scope. The server does not send pitches or messages.
+Contact details require a separate reveal operation. Every API key includes the contact permission automatically. The server does not send pitches or messages.
 
 ## Troubleshoot
 
-A `401` usually indicates an API-key problem. A `403` indicates a missing scope or an account without active Professional (Pro) access. Revoked or expired keys do not authorize requests, and existing keys stop working after the account loses Pro access. You can still revoke existing keys in API-key management after a downgrade. The documentation and public OpenAPI specification remain readable without a subscription. Verify the same key with the REST API and read [error handling](/errors).
+A `401` usually indicates an API-key problem. A `403` indicates that the account does not have active Professional (Pro) access. Revoked keys do not authorize requests, and existing keys stop working after the account loses Pro access. You can still revoke existing keys in API-key management after a downgrade. The documentation and public OpenAPI specification remain readable without a subscription. Verify the same key with the REST API and read [error handling](/errors).

@@ -1,12 +1,12 @@
 ---
 title: "Authenticate with an API key"
-description: "Create scoped Reporters.io API keys, send bearer authentication headers, and control access to reporter, outlet, article, contact, and account data."
+description: "Create a Reporters.io API key with a name, use all included API permissions, and manage access through revocation while your Pro subscription is active."
 sidebarTitle: "Authentication"
 keywords: ["Reporters.io", "API", "journalists", "media contacts"]
 ---
 
 
-Reporters.io requires an active Professional (Pro) subscription for every REST API and MCP operation and for creating API keys. Send your scoped key in the `Authorization` header. The documentation and public OpenAPI specification remain readable without a subscription.
+Reporters.io requires an active Professional (Pro) subscription for every REST API and MCP operation and for creating API keys. Send your API key in the `Authorization` header. The documentation and public OpenAPI specification remain readable without a subscription.
 
 ```http
 Authorization: Bearer YOUR_API_KEY
@@ -14,15 +14,17 @@ Authorization: Bearer YOUR_API_KEY
 
 ## Create and manage keys
 
-Open [API keys](https://reporters.io/account/api-keys) while signed in to an account with an active Professional (Pro) subscription. Give each integration its own key and select only the scopes it needs. Store the key when it is shown, then keep it in your server's secret settings or your MCP client's protected configuration.
+Open [API keys](https://reporters.io/account/api-keys) while signed in to an account with an active Professional (Pro) subscription. Enter a name for the integration and create the key. Every key automatically includes all six available API permissions. Store the key when it is shown, then keep it in your server's secret settings or your MCP client's protected configuration.
 
-Keys expire after 90 days by default. You can choose an expiry up to 365 days, and an account can have up to 10 active keys.
+Keys do not expire automatically. An account can have up to 10 active keys; revoke a key you no longer need before creating another when you reach that limit.
 
-Revoke a key when an integration no longer needs access. Replace a key if it has been exposed. Revoked or expired keys cannot authorize requests. If your account loses active Pro access, its existing keys stop authorizing API and MCP requests. You can still manage and revoke existing keys after a downgrade.
+Revoke a key when an integration no longer needs access. Replace a key if it has been exposed. Revoked keys cannot authorize requests. If your account loses active Pro access, its existing keys stop authorizing API and MCP requests. You can still manage and revoke existing keys after a downgrade.
 
-## Choose scopes
+## Included permissions
 
-| Scope | Access |
+Every key includes the following permissions automatically. You do not select permissions or set an expiration when creating a key. Permission names also appear in the technical API contract and account response.
+
+| Permission | Access |
 | --- | --- |
 | `reporters:read` | Search reporters and read reporter profiles. |
 | `outlets:read` | Search outlets, read outlet profiles, and inspect associated reporters. |
@@ -31,7 +33,7 @@ Revoke a key when an integration no longer needs access. Replace a key if it has
 | `metadata:read` | Read filter metadata. |
 | `account:read` | Read your API account context. |
 
-Search and profile scopes do not reveal contact details. Grant `contacts:read` only to integrations that need contact access.
+Search and profile requests do not reveal contact details. Contact access still requires a separate, explicit reveal request, even though every key includes the contact permission.
 
 ## Use the same key with MCP
 
@@ -40,6 +42,6 @@ The hosted [MCP server](/mcp-guide) accepts the same bearer header at `https://r
 ## Handle authentication failures
 
 - `401`: Check that the key was copied correctly and is still active.
-- `403`: Check the key's scopes and confirm that your account still has an active Professional (Pro) subscription.
+- `403`: Confirm that your account still has an active Professional (Pro) subscription.
 
 See [errors](/errors) for the shared error response. Keep keys out of URLs, browser bundles, public repositories, prompts, and application logs.
